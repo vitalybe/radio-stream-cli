@@ -1,0 +1,3 @@
+beets-data/state.pickle
+ssh-key/authorized_keys
+beets-data/*.db
