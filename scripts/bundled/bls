@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+function blsf() {
+    (
+        echo "Artist|Title|Last played|Count|Rating";
+        echo "-----|-----|-----|-----|-----|-----";
+        beet ls -f '$artist|$title|$lastplayed|$playcount|$rating' "$@"
+    ) | head -n 20 | column -s \| -t
+}
+
+blsf $*
