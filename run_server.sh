@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 type cygpath >/dev/null 2>&1 && DIR=$(cygpath -w "$(pwd)")
-[ -z "$nginx_password" ] && nginx_password=bestrice404
+[ -z "$NGINX_PASSWORD" ] && NGINX_PASSWORD=bestrice404
 
 docker run -it -p 80:80  -p 22123:22\
     -v "$DIR\ssh-key\authorized_keys":/root/.ssh/authorized_keys:ro\
@@ -10,5 +10,5 @@ docker run -it -p 80:80  -p 22123:22\
     -v "$DIR\scripts\bundled":/radio-stream/scripts/bundled\
     -v "$DIR\scripts\user":/radio-stream/scripts/user\
     -v "C:\Users\htpc2\Music\beets-music":/radio-stream/music\
-    -e "nginx_password=$nginx_password"
+    -e "NGINX_PASSWORD=$NGINX_PASSWORD"\
 	vitalybe/radio-stream $*
