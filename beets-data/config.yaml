@@ -1,7 +1,13 @@
 directory: /radio-stream/music
 library: library.db
 plugins: metasync duplicates radio_stream fromfilename edit
-metasync:
-    source: itunes
-    itunes:
-        library: ~/beets/data/library/iTunes Music Library.xml
+radio-stream:
+  playlists:
+    - name: All music
+      query: ""
+    - name: Metal
+      query: aggression::[34]
+    - name: Peaceful
+      query: aggression::[12]
+    - name: Not new
+      query: aggression::[12] rating:1..
