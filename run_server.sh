@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
+if [ -z $1 ]; then echo "Usage: ./run_server.sh Password1234" && exit 1; fi
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 type cygpath >/dev/null 2>&1 && DIR=$(cygpath -w "$(pwd)")
-[ -z "$NGINX_PASSWORD" ] && NGINX_PASSWORD=bestrice404
+NGINX_PASSWORD=$1
 
 DEV_MODE=""
 #DEV_MODE="-v $DIR\..\beets:/radio-stream/beets"
@@ -16,4 +18,4 @@ docker run -it -p 80:80  -p 22123:22\
     -v "C:\Users\htpc2\Music\beets-music":/radio-stream/music\
     -e "NGINX_PASSWORD=$NGINX_PASSWORD"\
     $DEV_MODE\
-	vitalybe/radio-stream $*
+	vitalybe/radio-stream ${@:2} # provide all the arguments except the first
