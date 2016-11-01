@@ -42,4 +42,4 @@ docker run -it -p 80:80  -p 22123:22\
     -v "C:\Users\htpc2\Music\beets-music":/radio-stream/music\
     -e "NGINX_PASSWORD=$NGINX_PASSWORD"\
     $DEV_MODE\
-    vitalybe/radio-stream
+    vitalybe/radio-stream $@
