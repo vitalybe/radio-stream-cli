@@ -1,27 +1,50 @@
 #!/usr/bin/env bash
+function convert_path() {
+    # this is required since docker on windows wants Windows-style directories 
+    if [[ "$OSTYPE" == "msys" ]]; then
+        type cygpath >/dev/null 2>&1 && echo $(cygpath -w $1) 
+    else
+        echo $1
+    fi
+}
 
 # get this script folder
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# this is required since docker on windows wants Windows-style directories 
-# TODO - Run only on Windows
-type cygpath >/dev/null 2>&1 && DIR=$(cygpath -w "$DIR")
+FOLDER_BEETS_DATA=`convert_path $DIR/data/beets`
+FOLDER_CONFIG=`convert_path $DIR/config`
+FOLDER_SSH_KEYS=`convert_path $DIR/data/ssh-key/authorized_keys`
+FOLDER_SCRIPTS=`convert_path $DIR/scripts`
+FOLDER_MUSIC=`convert_path $DIR/music`
+FOLDER_NEW_MUSIC=`convert_path $DIR/new-music`
 
-while getopts "hp:d" opt; do
+while getopts "hp:b:m:d" opt; do
   case $opt in
     h)
-      echo "Usage: ./run_server.sh [-p password] [-d]" >&2
+      echo "Usage: ./run_server.sh [-p password] [-m /music/folder] [-b /beets/data] [-d]" >&2
+      echo "-p - Set radio-stream password" >&2
+      echo "-b - Set beets library directory, by default: $FOLDER_BEETS_DATA" >&2
+      echo "-m - Set music directory, by default: $FOLDER_MUSIC" >&2
       echo "-p - Set radio-stream password" >&2
       echo "-d - Development mode" >&2
       exit 0
+      ;;
+    p)
+      NGINX_PASSWORD=$OPTARG
+      echo "Setting password: $NGINX_PASSWORD" 
+      ;;
+    m)
+      FOLDER_MUSIC=$OPTARG
+      echo "Overrided music folder: $OPTARG"
+      ;;
+    b)
+      FOLDER_BEETS_DATA=$OPTARG
+      echo "Overrided beets config folder: $OPTARG"
       ;;
     d)
       echo "*** Running in development mode ***"
       DEV_MODE="-v $DIR\..\beets:/radio-stream/beets"
       ;;
-    p)
-      NGINX_PASSWORD=$OPTARG
-      echo "Setting password: $NGINX_PASSWORD" 
   esac
 done
 
@@ -33,13 +56,12 @@ fi
 shift $((OPTIND-1))
 
 docker run -it -p 80:80  -p 22123:22\
-    -v "$DIR\data\ssh-key\authorized_keys":/root/.ssh/authorized_keys:ro\
-    -v "$DIR\data\beets":/radio-stream/data/beets\
-    -v "$DIR\new-music":/radio-stream/new-music\
-    -v "$DIR\scripts\bundled":/radio-stream/scripts/bundled\
-    -v "$DIR\scripts\user":/radio-stream/scripts/user\
-    -v "$DIR\config":/radio-stream/config\
-    -v "C:\Users\htpc2\Music\beets-music":/radio-stream/music\
+    -v "$FOLDER_SSH_KEYS":/root/.ssh/authorized_keys:ro\
+    -v "$FOLDER_BEETS_DATA":/radio-stream/data/beets\
+    -v "$FOLDER_NEW_MUSIC":/radio-stream/new-music\
+    -v "$FOLDER_SCRIPTS":/radio-stream/scripts\
+    -v "$FOLDER_CONFIG":/radio-stream/config\
+    -v "$FOLDER_MUSIC":/radio-stream/music\
     -e "NGINX_PASSWORD=$NGINX_PASSWORD"\
     $DEV_MODE\
     vitalybe/radio-stream $@
