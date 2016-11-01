@@ -8,9 +8,3 @@ radio-stream:
   playlists:
     - name: All music
       query: ""
-    - name: Metal
-      query: aggression::[34]
-    - name: Peaceful
-      query: aggression::[12]
-    - name: Not new
-      query: aggression::[12] rating:1..
