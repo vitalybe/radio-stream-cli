@@ -1,6 +1,6 @@
-beets-data/state.pickle
-beets-data/*.db
-beets-data/nginx_passwd
-ssh-key/authorized_keys
+data/beets/state.pickle
+data/beets/*.db
+data/nginx/nginx_passwd
+data/ssh-key/authorized_keys
 scripts/user/
 new-music
