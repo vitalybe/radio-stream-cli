@@ -17,6 +17,7 @@ FOLDER_SSH_KEYS=`convert_path $DIR/data/ssh-key/authorized_keys`
 FOLDER_SCRIPTS=`convert_path $DIR/scripts`
 FOLDER_MUSIC=`convert_path $DIR/music`
 FOLDER_NEW_MUSIC=`convert_path $DIR/new-music`
+FOLDER_BEETS_DEV=`convert_path $DIR/../beets`
 
 while getopts "hp:b:m:d" opt; do
   case $opt in
@@ -43,7 +44,7 @@ while getopts "hp:b:m:d" opt; do
       ;;
     d)
       echo "*** Running in development mode ***"
-      DEV_MODE="-v $DIR\..\beets:/radio-stream/beets"
+      DEV_MODE="-v $FOLDER_BEETS_DEV:/radio-stream/beets"
       ;;
   esac
 done
