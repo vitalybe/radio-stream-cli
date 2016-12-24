@@ -11,13 +11,19 @@ function convert_path() {
 # get this script folder
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-FOLDER_BEETS_DATA=`convert_path $DIR/data/beets`
-FOLDER_CONFIG=`convert_path $DIR/config`
-FOLDER_SSH_KEYS=`convert_path $DIR/data/ssh-key/authorized_keys`
-FOLDER_SCRIPTS=`convert_path $DIR/scripts`
-FOLDER_MUSIC=`convert_path $DIR/music`
-FOLDER_NEW_MUSIC=`convert_path $DIR/new-music`
-FOLDER_BEETS_DEV=`convert_path $DIR/../beets`
+CONTAINER_ID=$($DIR/util/container_id.sh)
+if [ $CONTAINER_ID ]; then
+    echo "*** Server is already running ***"
+    exit 1
+fi
+
+FOLDER_BEETS_DATA=`convert_path $DIR/../data/beets`
+FOLDER_CONFIG=`convert_path $DIR/../config`
+FOLDER_SSH_KEYS=`convert_path $DIR/../data/ssh-key/authorized_keys`
+FOLDER_SCRIPTS=`convert_path $DIR/../scripts`
+FOLDER_MUSIC=`convert_path $DIR/../music`
+FOLDER_NEW_MUSIC=`convert_path $DIR/../new-music`
+FOLDER_BEETS_DEV=`convert_path $DIR/../../beets`
 
 while getopts "hp:b:m:d" opt; do
   case $opt in
@@ -56,7 +62,7 @@ fi
 # make $@ contain all the other arguments
 shift $((OPTIND-1))
 
-docker run -it -p 80:80  -p 22123:22\
+docker run -d -p 80:80  -p 22123:22\
     -v "$FOLDER_SSH_KEYS":/root/.ssh/authorized_keys:ro\
     -v "$FOLDER_BEETS_DATA":/radio-stream/data/beets\
     -v "$FOLDER_NEW_MUSIC":/radio-stream/new-music\
@@ -66,3 +72,5 @@ docker run -it -p 80:80  -p 22123:22\
     -e "NGINX_PASSWORD=$NGINX_PASSWORD"\
     $DEV_MODE\
     vitalybe/radio-stream $@
+
+docker logs -f $(docker ps -l -q)
