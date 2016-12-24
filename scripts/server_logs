@@ -7,4 +7,4 @@ if [ -z $CONTAINER_ID ]; then
     exit 1
 fi
 
-docker stop $(util/container_id.sh)
+docker logs -f $(util/container_id.sh)

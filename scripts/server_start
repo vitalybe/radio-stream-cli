@@ -13,8 +13,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 CONTAINER_ID=$($DIR/util/container_id.sh)
 if [ $CONTAINER_ID ]; then
-    echo "*** Server is already running ***"
-    exit 1
+    echo "*** Server is already running - Stopping ***"
+    $DIR/server_stop
 fi
 
 FOLDER_BEETS_DATA=`convert_path $DIR/../data/beets`
