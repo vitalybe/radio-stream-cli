@@ -4,3 +4,4 @@ data/nginx/nginx_passwd
 data/ssh-key/authorized_keys
 scripts/user/
 new-music
+music
