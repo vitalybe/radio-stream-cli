@@ -1,8 +1,8 @@
 How to use
 ==========
 
-* Start server: `./run_server.sh`
-* Connect to running server: `./connect.sh`
+* Start server: `bin/start`
+* Connect to running server: `.bin/connect`
 
 Configuration
 =============
