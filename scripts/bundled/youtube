@@ -1,0 +1,5 @@
+set -e
+cd /radio-stream/new-music
+youtube-dl --extract-audio --audio-format mp3 --output "%(title)s.%(ext)s" "$@"
+# incremental (skip previous) and -s (single tracks)
+beet import -i -s .
