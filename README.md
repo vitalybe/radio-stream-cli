@@ -2,7 +2,7 @@ How to use
 ==========
 
 * Start server: `bin/start`
-* Connect to running server: `.bin/connect`
+* Connect to running server: `bin/connect`
 
 Configuration
 =============
