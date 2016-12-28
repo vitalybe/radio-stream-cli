@@ -10,4 +10,4 @@ if [ -z $CONTAINER_ID ]; then
     fi
 fi
 
-docker logs -f $CONTAINER_ID
+docker logs $CONTAINER_ID

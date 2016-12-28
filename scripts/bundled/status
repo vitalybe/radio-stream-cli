@@ -1,7 +1,7 @@
 echo "*******************"
 echo "    RadioStream    "
 echo "*******************"
-echo "User: $NGINX_PASSWORD"
+echo "User: radio"
 echo "Password: $NGINX_PASSWORD"
 echo ""
 echo "Available scripts: "
