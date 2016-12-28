@@ -1,0 +1,8 @@
+echo "*******************"
+echo "    RadioStream    "
+echo "*******************"
+echo "Password: $NGINX_PASSWORD"
+echo "Available scripts: "
+echo ""
+find /radio-stream/scripts/ -type f -exec basename {} \; | grep -v readme | grep -v status | sort
+echo ""

@@ -59,10 +59,17 @@ if [ -z $NGINX_PASSWORD ]; then
     echo "*** WARNING: PASSWORD NOT SET - USING DEFAULT ***" && NGINX_PASSWORD=radio
 fi
 
+if [ -z $@ ]; then
+    RUN_MODE="-d"
+else
+    echo "Starting container in interactive mode (-it)"
+    RUN_MODE="-it"
+fi
+
 # make $@ contain all the other arguments
 shift $((OPTIND-1))
 
-docker run -d -p 80:80  -p 22123:22\
+docker run $RUN_MODE -p 80:80  -p 22123:22\
     -v "$FOLDER_SSH_KEYS":/root/.ssh/authorized_keys:ro\
     -v "$FOLDER_BEETS_DATA":/radio-stream/data/beets\
     -v "$FOLDER_NEW_MUSIC":/radio-stream/new-music\
@@ -73,4 +80,4 @@ docker run -d -p 80:80  -p 22123:22\
     $DEV_MODE\
     vitalybe/radio-stream $@
 
-docker logs -f $(docker ps -l -q)
+$DIR/connect
