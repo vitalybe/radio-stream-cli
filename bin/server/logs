@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-CONTAINER_ID=$($DIR/util/container_id.sh)
+CONTAINER_ID=$($DIR/../util/container_id.sh)
 if [ -z $CONTAINER_ID ]; then
     echo "*** Radio Stream isn't running - Trying to get logs from last running instance ***"
     CONTAINER_ID=$(docker ps -qal -f ancestor=vitalybe/radio-stream)

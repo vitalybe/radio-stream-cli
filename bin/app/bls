@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [[ -z $NGINX_PASSWORD ]]; then $DIR/../util/container_run.sh $(basename "$0"); exit 0; fi
+
 function blsf() {
     (
         echo "-----|-----|-----|-----|-----";
