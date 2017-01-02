@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="$(dirname "$(readlink -f "$0")")"
 
 CONTAINER_ID=$($DIR/../util/container_id.sh)
 if [ -z $CONTAINER_ID ]; then
