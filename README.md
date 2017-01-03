@@ -47,9 +47,11 @@ The clients are available for [Mac](TODO) and [Android](TODO).
 Getting started
 ---------------
 
+**Important:** All the following commands should be executed in your terminal relative to the root folder. So if you unzipped the application to: `~/radio-stream-cli` then you should open the terminal and run `cd ~/radio-stream-cli`.
+
 * Clone this git repositry or [download](TODO) the zip
 * Open the terminal in the downloaded directory
-* Run: `bin/start`
+* Run: `bin/server/start`
 
 If all goes well, docker will download the Radio Stream and connect to it. You should see:
 
@@ -60,13 +62,25 @@ If all goes well, docker will download the Radio Stream and connect to it. You s
     Password: radio
 
     Available scripts:
-    ...
 
-    bash-4.3#
-
-Type `exit` to exit the server application.
+    beet
+    bls
+    pending_delete
+    recently-added
+    recently-played
+    unrated
+    youtube
 
 At this point your server is running and listening on port **80**.
+
+NOTE: In the future, it is suggested to run the `start` with a `-p PASSWORD` flag instead of the default password.
+
+The `bin/server/start` command has flags for additional configuration:
+
+* Password: Use the `-p` flag to change the password, e.g: `bin/server/start -p PASWORD` flag, e.g: `bin/server/start -p 1234`
+* Music folder: Use the `-m` flag to set the folder where the imported music resides. By default it is in `./music` folder
+
+
 
 Connect with a client application
 ---------------------------------
@@ -92,40 +106,101 @@ If it doesn't connect, please see [troubleshooting](#troubleshooting) below.
 
 At this point we have no music so let's add some.
 
-Managing Music
+Managing music
 ==============
 
 Adding existing music library
 ------------------------------
+Copy your music files to the folder `./new-music`. Then run: `bin/app/beet import /radio-stream/new-music`.
 
+NOTE: `/radio-stream/new-music` folder is a mapped folder on the docker container. You don't need to change it to match to your actual folder structure.
+
+Import process is described in more detail in beet's documentation [here](http://beets.readthedocs.io/en/v1.4.2/reference/cli.html#import)
 
 Adding music from YouTube
 -------------------------
 
-Configuration
-=============
+You can easily add music from YouTube by running: `bin/app/youtube YOUTUBE_VIDEO_URL`. 
 
-Password
---------
+This would download the audio and add it to your library.
+
+Listing your music
+------------------
+To list the music you added you can run `bin/app/beet ls` or for a nicely formatted table `bin/app/bls`. 
+
+This command is using beet's list command and its (query syntax)[http://beets.readthedocs.io/en/v1.4.2/reference/query.html)]. So for example to list only your beatles songs you could run: `bin/app/bls the beatles`
+
+I've created several scripts for commonly used queries:
+
+* `bin/app/recently_added` - Lists recently added songs, ordered by add date
+* `bin/app/recently_played` - Lists recently played songs, ordered by play date
+* `bin/app/unrated` - Lists unrated songs
+* `bin/app/pending_delete` - Shows songs with 1 star sorted by add date (new songs first)
+
+You can create new ones for your needs by copying one of them and changing the query.
+
+Config file
+===========
+
+Make user config file
+---------------------
+
+The config file is located at: `cli/config/config_source.yaml` in YAML format.
+
+To modify its settings, copy it first:
+
+`cp cli/config/config_source.yaml cli/config/config_user.yaml`
+
+In the following sections modify the copied **config_user.yaml** file.
 
 Playlists
 ---------
 
+By default a single playlist is included, "All music":
+
+    playlists:
+        - name: All music
+          query: ""
+
+To add a new playlist, simply copy these lines, give it a new name and define a query in beet's [query langauge](http://beets.readthedocs.io/en/v1.4.2/reference/query.html). For example, if we wanted to create a new playlist for Rock, this config part would look like so:
+
+    playlists:
+        - name: All music
+          query: ""
+        - name: All music
+          query: genre:Rock
+
+Once you finish, run the `bin/server/start` to reload the new configuration.
+
 Last.FM
 -------
+
+To enable scrobbling your plays to Last.FM change the following part in the configuration:
+
+    last-fm:
+        username:
+        password:
+
+Fill in your last.fm credentials and then run: `bin/server/configure_last_fm`
+
+Once you finish, run the `bin/server/start` to reload the new configuration.
+
 
 Scripts
 -------
 
+Adding scripts to path
+----------------------
+ln -s -f $(pwd)/beet /usr/local/bin/beet
+
+Backup
+------
 
 Upgrading
 =========
-* Run: `bin/stop`
+* Run: `bin/server/stop`
 * Run: `docker pull vitalybe/radio-stream:latest`
 
-Configuration
-=============
-* Follow the directions in configuration [README](config/readme.md)
 
 Troubleshooting
 ===============
@@ -137,3 +212,14 @@ Logs
 ----
 
 In case something is wrong, you can see the logs by: `bin/logs`
+
+Command reference
+=================
+
+* `bin/server/start` starts the server. It has the following flags:
+    * `-p` - Set the password of the server - Avoid using default
+    * `-m` - Set the folder where the imported music resides. By default it is in `./music` folder
+    * `-h` - List all the allowed flags
+* `bin/server/stop` - Stops the server
+* `bin/server/upgrade` - Upgrade the server to latest version
+* `bin/server/beet radio-preview` TODO
