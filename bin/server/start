@@ -32,7 +32,6 @@ while getopts "hp:b:m:d" opt; do
       echo "-p - Set radio-stream password" >&2
       echo "-b - Set beets library directory, by default: $FOLDER_BEETS_DATA" >&2
       echo "-m - Set music directory, by default: $FOLDER_MUSIC" >&2
-      echo "-p - Set radio-stream password" >&2
       echo "-d - Development mode" >&2
       exit 0
       ;;

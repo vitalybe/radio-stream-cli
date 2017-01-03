@@ -8,7 +8,7 @@ function blsf() {
         echo "Artist|Title|Last played|Count|Rating";
         echo "-----|-----|-----|-----|-----";
         beet ls -f '$artist|$title|$lastplayed|$playcount|$rating' "$@"
-    ) | head -n 20 | column -s \| -t
+    ) | column -s \| -t
 }
 
 echo -e "\e[33mRunning: beet ls $*\e[39m"
