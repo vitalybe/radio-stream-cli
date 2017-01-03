@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DIR="$(dirname "$(readlink -f "$0")")"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 $DIR/stop
 docker pull vitalybe/radio-stream:latest

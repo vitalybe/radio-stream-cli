@@ -9,7 +9,7 @@ function convert_path() {
 }
 
 # get this script folder
-DIR="$(dirname "$(readlink -f "$0")")"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 CONTAINER_ID=$($DIR/../util/container_id.sh)
 if [ $CONTAINER_ID ]; then

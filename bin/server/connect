@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-DIR="$(dirname "$(readlink -f "$0")")"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 $DIR/../util/container_run.sh status
 $DIR/../util/container_run.sh bash
