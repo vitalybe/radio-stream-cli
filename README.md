@@ -25,15 +25,6 @@ Each time you start listening to your music **Radio Stream** makes a list of son
 
 Each of these rules contribute to a "score" of a song which decides which song will be streamed next.
 
-Why I made Radio Stream
------------------------
-
-I have a relatively large music library which is too large to store on a device. Initially I've relied on various partial syncing solutions for the iPhone, but my solutions were flawed, especially so once I've started using an Android phone. I wanted to have easy access to my library from any device I use.
-
-Additionally, I don't like all my music library the same, so playing it on shuffle was a disappointing experience - I want to listen more to songs I like more. And I definitely don't want to listen to a song I just listened a day ago because it got shuffled again. I wanted a more intelligent way to choose the music for me.
-
-I've looked into several online service, but they were other limited in some way or lacked the features I wanted. Eventually I decided I will just do it myself.
-
 How to use
 ==========
 
@@ -181,45 +172,55 @@ To enable scrobbling your plays to Last.FM change the following part in the conf
         username:
         password:
 
-Fill in your last.fm credentials and then run: `bin/server/configure_last_fm`
-
 Once you finish, run the `bin/server/start` to reload the new configuration.
 
-
-Scripts
--------
-
-Adding scripts to path
+Adding an alias to common scripts
 ----------------------
-ln -s -f $(pwd)/beet /usr/local/bin/beet
+echo alias beet=$(pwd)/beet
+echo alias bls=$(pwd)/bls
 
-Backup
-------
+Save it in your .bashrc file
 
 Upgrading
 =========
-* Run: `bin/server/stop`
-* Run: `docker pull vitalybe/radio-stream:latest`
+
+Download the latest version, as described [before](#getting-started). If you've cloned the repositry via git, simply run `git pull`.
+
+Next upgrade the container `bin/server/upgrade` and then start it again with the `/bin/server/start` command.
 
 
 Troubleshooting
 ===============
 
-Client can't connect
---------------------
+In this order:
 
-Logs
-----
-
-In case something is wrong, you can see the logs by: `bin/logs`
+* Run: `bin/app/status`. You should be getting the username and the password.
+    * If you don't get these, the container isn't running, run: `bin/server/logs` to see what went wrong and open an issue.
+* On the computer running the server, run: `curl -u radio:MY_PASSWORD http://localhost/radio-stream/api/playlists`
+    * You should be getting the current available playlists. If you get error 401 your password is wrong.
+* Get the ip address of the server and from another computer (e.g where you're trying to listen to music) try running: `curl -u radio:MY_PASSWORD http://MY_IP_ADDRESS/radio-stream/api/playlists`
+    * If that doesn't work make sure port 80 is open in server's firewall/router.
 
 Command reference
 =================
 
+* `bin/server/beet radio-preview` - Shows the songs and their calculated rankings
+    * `-p PLAYLIST` - Only show songs that belong to the given playlist
+    * `-c COUNT` - Limit the number of results
+    * `-h` - List all the flags
 * `bin/server/start` starts the server. It has the following flags:
     * `-p` - Set the password of the server - Avoid using default
     * `-m` - Set the folder where the imported music resides. By default it is in `./music` folder
     * `-h` - List all the allowed flags
 * `bin/server/stop` - Stops the server
 * `bin/server/upgrade` - Upgrade the server to latest version
-* `bin/server/beet radio-preview` TODO
+* `bin/server/connect` - Connect to a running docker container instance bash instance
+
+Why I made Radio Stream
+=======================
+
+I have a relatively large music library which is too large to store on a device. Initially I've relied on various partial syncing solutions for the iPhone, but my solutions were flawed, especially so once I've started using an Android phone. I wanted to have easy access to my library from any device I use.
+
+Additionally, I don't like all my music library the same, so playing it on shuffle was a disappointing experience - I want to listen more to songs I like more. And I definitely don't want to listen to a song I just listened a day ago because it got shuffled again. I wanted a more intelligent way to choose the music for me.
+
+I've looked into several online service, but they were other limited in some way or lacked the features I wanted. Eventually I decided I will just do it myself.
