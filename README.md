@@ -13,6 +13,10 @@ About
 * **Powered by beets** - Use the super-powerful [beets](https://github.com/beetbox/beets) and all its plugins to organize your music. 
 * **Open source** - Modify the applications for any missing features. 
 
+<p align="center">
+  <img src="data/images/android.jpg" alt="Radio Stream for Android"/>
+</p>
+
 Automatic DJ
 ------------
 Each time you start listening to your music **Radio Stream** makes a list of songs with the following consideration:
@@ -33,7 +37,7 @@ Prerequirements
 You need [docker](https://www.docker.com/products/overview) to run the server. So far I've ran it successfully on **Mac** and **Linux**. 
 You might be able to run it on **Windows 10** too, if you use **bash for Windows** (for example like the one that comes with git for Windows).
 
-The clients are available for [Mac](TODO) and [Android](TODO).
+The clients are available for Mac and Android.
 
 Getting started
 ---------------
@@ -64,14 +68,14 @@ If all goes well, docker will download the Radio Stream and connect to it. You s
 
 At this point your server is running and listening on port **80**.
 
-NOTE: In the future, it is suggested to run the `start` with a `-p PASSWORD` flag instead of the default password.
+**NOTE:** To allow incoming connection in your firewall or router to allow external connections.
+
+**NOTE:** In the future, it is suggested to run the `start` with a `-p PASSWORD` flag instead of the default password.
 
 The `bin/server/start` command has flags for additional configuration:
 
 * Password: Use the `-p` flag to change the password, e.g: `bin/server/start -p PASWORD` flag, e.g: `bin/server/start -p 1234`
 * Music folder: Use the `-m` flag to set the folder where the imported music resides. By default it is in `./music` folder
-
-
 
 Connect with a client application
 ---------------------------------
@@ -85,13 +89,11 @@ Download one of the client applications:
 
 Launch the application and enter the IP address of the server and the default password: `radio`
 
-**Note:** You might need to allow incoming connection in your firewall or router.
-
-`TODO IMAGE SETTINGS`
+![alt text](data/images/settings.jpg "Settings screenshot") 
 
 If everything works as expected, you should see this screen:
 
-`TODO IMAGE PLAYLISTS`
+![alt text](data/images/playlists3.jpg "Settings screenshot") 
 
 If it doesn't connect, please see [troubleshooting](#troubleshooting) below.
 
