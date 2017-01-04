@@ -17,12 +17,11 @@ if [ $CONTAINER_ID ]; then
     $DIR/stop
 fi
 
-FOLDER_BEETS_DATA=`convert_path $DIR/../../data/beets`
+FOLDER_BEETS_DATA=`convert_path $DIR/../../library/beets`
 FOLDER_CONFIG=`convert_path $DIR/../../config`
-FOLDER_SSH_KEYS=`convert_path $DIR/../../data/ssh-key/authorized_keys`
 FOLDER_BIN=`convert_path $DIR/../app`
-FOLDER_MUSIC=`convert_path $DIR/../../music`
-FOLDER_NEW_MUSIC=`convert_path $DIR/../../new-music`
+FOLDER_MUSIC=`convert_path $DIR/../../library/music`
+FOLDER_NEW_MUSIC=`convert_path $DIR/../../library/new-music`
 FOLDER_BEETS_DEV=`convert_path $DIR/../../../beets`
 
 while getopts "hp:b:m:d" opt; do
@@ -70,7 +69,6 @@ else
 fi
 
 docker run $RUN_MODE -p 80:80  -p 22123:22\
-    -v "$FOLDER_SSH_KEYS":/root/.ssh/authorized_keys:ro\
     -v "$FOLDER_BEETS_DATA":/radio-stream/data/beets\
     -v "$FOLDER_NEW_MUSIC":/radio-stream/new-music\
     -v "$FOLDER_BIN":/radio-stream/bin\

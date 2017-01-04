@@ -1,7 +1,5 @@
 config/config_user.yaml
-data/beets
-data/nginx/nginx_passwd
-data/ssh-key/authorized_keys
+library/beets
 scripts/user/
 new-music
 music
