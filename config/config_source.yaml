@@ -2,7 +2,7 @@ directory: /radio-stream/music
 library: library.db
 plugins: metasync duplicates radio_stream fromfilename edit
 import: 
-  incremental: yes
+  move: yes
 radio-stream:
   last-fm:
     username:

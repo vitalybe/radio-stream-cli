@@ -14,7 +14,7 @@ About
 * **Open source** - Modify the applications for any missing features. 
 
 <p align="center">
-  <img src="data/images/android.jpg" alt="Radio Stream for Android"/>
+  <img src="images/android.jpg" alt="Radio Stream for Android"/>
 </p>
 
 Automatic DJ
@@ -75,7 +75,7 @@ At this point your server is running and listening on port **80**.
 The `bin/server/start` command has flags for additional configuration:
 
 * Password: Use the `-p` flag to change the password, e.g: `bin/server/start -p PASWORD` flag, e.g: `bin/server/start -p 1234`
-* Music folder: Use the `-m` flag to set the folder where the imported music resides. By default it is in `./music` folder
+* Music folder: Use the `-m` flag to set the folder where the imported music resides. By default it is in `library/music` folder
 
 Connect with a client application
 ---------------------------------
@@ -89,11 +89,11 @@ Download one of the client applications:
 
 Launch the application and enter the IP address of the server and the default password: `radio`
 
-![alt text](data/images/settings.jpg "Settings screenshot") 
+![alt text](images/settings.jpg "Settings screenshot") 
 
 If everything works as expected, you should see this screen:
 
-![alt text](data/images/playlists3.jpg "Settings screenshot") 
+![alt text](images/playlists3.jpg "Settings screenshot") 
 
 If it doesn't connect, please see [troubleshooting](#troubleshooting) below.
 
@@ -104,7 +104,7 @@ Managing music
 
 Adding existing music library
 ------------------------------
-Copy your music files to the folder `./new-music`. Then run: `bin/app/beet import /radio-stream/new-music`.
+Copy your music files to the folder `library/new-music`. Then run: `bin/app/beet import /radio-stream/new-music`.
 
 NOTE: `/radio-stream/new-music` folder is a mapped folder on the docker container. You don't need to change it to match to your actual folder structure.
 
@@ -212,7 +212,7 @@ Command reference
     * `-h` - List all the flags
 * `bin/server/start` starts the server. It has the following flags:
     * `-p` - Set the password of the server - Avoid using default
-    * `-m` - Set the folder where the imported music resides. By default it is in `./music` folder
+    * `-m` - Set the folder where the imported music resides. By default it is in `library/music` folder
     * `-h` - List all the allowed flags
 * `bin/server/stop` - Stops the server
 * `bin/server/upgrade` - Upgrade the server to latest version
