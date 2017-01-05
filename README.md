@@ -11,7 +11,7 @@ About
 * **Desktop and Mobile clients** - Listen to your music when you're on another computer or on your mobile phone.
 * **Last.FM support** - Scrobble your music to Last.FM
 * **Powered by beets** - Use the super-powerful [beets](https://github.com/beetbox/beets) and all its plugins to organize your music. 
-* **Open source** - Modify the applications for any missing features. 
+* **Open source** - Modify the applications to your liking. The full source control is available [here](https://github.com/vitalybe/radio-stream).
 
 <p align="center">
   <img src="images/android.jpg" alt="Radio Stream for Android"/>
