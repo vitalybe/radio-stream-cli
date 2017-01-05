@@ -44,7 +44,7 @@ Getting started
 
 **Important:** All the following commands should be executed in your terminal relative to the root folder. So if you unzipped the application to: `~/radio-stream-cli` then you should open the terminal and run `cd ~/radio-stream-cli`.
 
-* Clone this git repositry or [download](TODO) the zip
+* Clone this git repositry or [download](https://github.com/vitalybe/radio-stream-cli/archive/master.zip) the zip
 * Open the terminal in the downloaded directory
 * Run: `bin/server/start`
 
@@ -176,10 +176,12 @@ Once you finish, run the `bin/server/start` to reload the new configuration.
 
 Adding an alias to common scripts
 ----------------------
-echo alias beet=$(pwd)/bin/app/beet
-echo alias bls=$(pwd)/bin/app/bls
+    echo alias beet=$(pwd)/bin/app/beet
+    echo alias bls=$(pwd)/bin/app/bls
 
-Save it in your .bashrc file
+Save the output in your .bashrc file.
+
+NOTE: Don't create a symlink to these files - That will not work.
 
 Upgrading
 =========
