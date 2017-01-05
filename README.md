@@ -44,7 +44,7 @@ Getting started
 
 **Important:** All the following commands should be executed in your terminal relative to the root folder. So if you unzipped the application to: `~/radio-stream-cli` then you should open the terminal and run `cd ~/radio-stream-cli`.
 
-* Clone this git repositry or [download](https://github.com/vitalybe/radio-stream-cli/archive/master.zip) the zip
+* Clone this git repository or [download](https://github.com/vitalybe/radio-stream-cli/archive/master.zip) the zip
 * Open the terminal in the downloaded directory
 * Run: `bin/server/start`
 
@@ -186,7 +186,7 @@ NOTE: Don't create a symlink to these files - That will not work.
 Upgrading
 =========
 
-Download the latest version, as described [before](#getting-started). If you've cloned the repositry via git, simply run `git pull`.
+Download the latest version, as described [before](#getting-started). If you've cloned the repository via git, simply run `git pull`.
 
 Next upgrade the container `bin/server/upgrade` and then start it again with the `/bin/server/start` command.
 
