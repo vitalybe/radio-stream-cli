@@ -104,9 +104,7 @@ Managing music
 
 Adding existing music library
 ------------------------------
-Copy your music files to the folder `library/new-music`. Then run: `bin/app/beet import /radio-stream/new-music`.
-
-NOTE: `/radio-stream/new-music` folder is a mapped folder on the docker container. You don't need to change it to match to your actual folder structure.
+Copy your music files to the folder `library/new-music`. Then run: `bin/app/import`. Once the import is complete your music will be moved to `library/music`.
 
 Import process is described in more detail in beet's documentation [here](http://beets.readthedocs.io/en/v1.4.2/reference/cli.html#import)
 
@@ -138,11 +136,11 @@ Config file
 Make user config file
 ---------------------
 
-The config file is located at: `cli/config/config_source.yaml` in YAML format.
+The config file is located at: `config/config_source.yaml` in YAML format.
 
 To modify its settings, copy it first:
 
-`cp cli/config/config_source.yaml cli/config/config_user.yaml`
+`cp config/config_source.yaml config/config_user.yaml`
 
 In the following sections modify the copied **config_user.yaml** file.
 
@@ -163,7 +161,7 @@ To add a new playlist, simply copy these lines, give it a new name and define a 
         - name: All music
           query: genre:Rock
 
-Once you finish, run the `bin/server/start` to reload the new configuration.
+Once you finish, run the `bin/server/start` to restart the service and reload the new configuration.
 
 Last.FM
 -------
@@ -178,8 +176,8 @@ Once you finish, run the `bin/server/start` to reload the new configuration.
 
 Adding an alias to common scripts
 ----------------------
-echo alias beet=$(pwd)/beet
-echo alias bls=$(pwd)/bls
+echo alias beet=$(pwd)/bin/app/beet
+echo alias bls=$(pwd)/bin/app/bls
 
 Save it in your .bashrc file
 
