@@ -119,7 +119,7 @@ Listing your music
 ------------------
 To list the music you added you can run `bin/app/beet ls` or for a nicely formatted table `bin/app/bls`. 
 
-This command is using beet's list command and its (query syntax)[http://beets.readthedocs.io/en/v1.4.2/reference/query.html)]. So for example to list only your beatles songs you could run: `bin/app/bls the beatles`
+This command is using beet's list command and its [query syntax](http://beets.readthedocs.io/en/v1.4.2/reference/query.html). So for example to list only your beatles songs you could run: `bin/app/bls the beatles`
 
 I've created several scripts for commonly used queries:
 
