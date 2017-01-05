@@ -1,6 +1,8 @@
 Radio Stream
 ============
 
+**NOTE:** These instructions are intended for the users of Radio Stream - Developers and contributors should use [this repositry](https://github.com/vitalybe/radio-stream).
+
 About
 -----
 **Radio Stream** is your personal music service that streams music automatically based on your listening habits.
