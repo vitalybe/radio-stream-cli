@@ -82,12 +82,7 @@ The `bin/server/start` command has flags for additional configuration:
 Connect with a client application
 ---------------------------------
 
-Before you proceed, let's verify that the server is online and working. 
-
-Download one of the client applications:
-
-* [Mac](TODO) 
-* [Android](TODO)
+Before you proceed, let's verify that the server is online and working. [Download](https://github.com/vitalybe/radio-stream-cli/releases/latest) one of the client applications. 
 
 Launch the application and enter the IP address of the server and the default password: `radio`
 
