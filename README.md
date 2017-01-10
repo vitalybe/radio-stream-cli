@@ -39,7 +39,7 @@ Prerequirements
 You need [docker](https://www.docker.com/products/overview) to run the server. So far I've ran it successfully on **Mac** and **Linux**. 
 You might be able to run it on **Windows 10** too, if you use **bash for Windows** (for example like the one that comes with git for Windows).
 
-The clients are available for **Mac** and **Android**.
+The clients are [available](https://github.com/vitalybe/radio-stream-cli/releases/latest) for **Mac** and **Android**.
 
 Getting started
 ---------------
