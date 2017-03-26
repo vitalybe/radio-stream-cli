@@ -8,7 +8,7 @@ About
 **Radio Stream** is your personal music service that streams music automatically based on your listening habits.
 
 * **Your music** - Use your own music files without restrictions.
-* **Automatic DJ** - Enjoy music immediately without choosing a specific song or album. The music is selected based on when you last heard it, its rating and more. Read more [below](#automatic-dj).
+* **Automatic DJ** - Enjoy music immediately without choosing a specific song or album. The music is selected based on when you last heard it, its rating and more. Read more [here](https://github.com/vitalybe/radio-stream-cli#automatic-dj).
 * **Dynamic playlists** - Want to hear only some of your music? Create a music playlist, e.g, only with genre Heavy Metal, and have the automatic DJ stream the music from that station.
 * **Desktop and Mobile clients** - Listen to your music when you're on another computer or on your mobile phone.
 * **Last.FM support** - Scrobble your music to Last.FM
@@ -36,10 +36,10 @@ How to use
 
 Prerequirements
 ---------------
-You need [docker](https://www.docker.com/products/overview) to run the server. So far I've ran it successfully on **Mac** and **Linux**. 
+You need [docker](https://docs.docker.com/engine/installation/) to run the server. So far I've ran it successfully on **Mac** and **Linux**. 
 You might be able to run it on **Windows 10** too, if you use **bash for Windows** (for example like the one that comes with git for Windows).
 
-The clients are available for Mac and Android.
+The clients are [available](https://github.com/vitalybe/radio-stream-cli/releases/latest) for **Mac** and **Android**.
 
 Getting started
 ---------------
@@ -82,12 +82,7 @@ The `bin/server/start` command has flags for additional configuration:
 Connect with a client application
 ---------------------------------
 
-Before you proceed, let's verify that the server is online and working. 
-
-Download one of the client applications:
-
-* [Mac](TODO) 
-* [Android](TODO)
+Before you proceed, let's verify that the server is online and working. [Download](https://github.com/vitalybe/radio-stream-cli/releases/latest) one of the client applications. 
 
 Launch the application and enter the IP address of the server and the default password: `radio`
 
