@@ -2,4 +2,4 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [[ -z $RADIO_STREAM_CONTAINER ]]; then $DIR/../util/container_run.sh $(basename "$0") $*; exit 0; fi
 
-bls rating:20 added-
+bls deleted:1

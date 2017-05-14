@@ -17,11 +17,13 @@ if [ $CONTAINER_ID ]; then
     $DIR/stop
 fi
 
+
 FOLDER_BEETS_DATA=`convert_path $DIR/../../library/beets`
 FOLDER_CONFIG=`convert_path $DIR/../../config`
 FOLDER_BIN=`convert_path $DIR/../app`
 FOLDER_MUSIC=`convert_path $DIR/../../library/music`
 FOLDER_NEW_MUSIC=`convert_path $DIR/../../library/new-music`
+FILE_BASH_HISTORY=`convert_path $DIR/../../library/misc/.bash_history`
 FOLDER_BEETS_DEV=`convert_path $DIR/../../../beets`
 
 while getopts "hp:b:m:d" opt; do
@@ -68,12 +70,17 @@ else
     RUN_MODE="-it"
 fi
 
+# This is needed only during the first run - Otherwise the history file is shared as a directory
+mkdir -p $DIR/../../library/misc
+touch $FILE_BASH_HISTORY
+
 docker run $RUN_MODE -p 80:80  -p 22123:22\
     -v "$FOLDER_BEETS_DATA":/radio-stream/data/beets\
     -v "$FOLDER_NEW_MUSIC":/radio-stream/new-music\
     -v "$FOLDER_BIN":/radio-stream/bin\
     -v "$FOLDER_CONFIG":/radio-stream/config\
     -v "$FOLDER_MUSIC":/radio-stream/music\
+    -v "$FILE_BASH_HISTORY":/root/.bash_history\
     -e "NGINX_PASSWORD=$NGINX_PASSWORD"\
     $DEV_MODE\
     vitalybe/radio-stream $@
