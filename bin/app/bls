@@ -7,7 +7,7 @@ function blsf() {
         echo "-----|-----|-----|-----|-----|-----";
         echo "Artist|Title|Last played|Count|Rating|Date added";
         echo "-----|-----|-----|-----|-----|-----";
-        beet ls -f '%left{$artist,20}|%left{$title,20}|$playcount|$rating|$added' "$@"
+        beet ls -f '%left{$artist,20}|%left{$title,20}|$lastplayed|$playcount|$rating|$added' "$@"
     ) | column -s \| -t -c 60
 }
 
