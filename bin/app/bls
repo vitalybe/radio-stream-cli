@@ -4,10 +4,9 @@ if [[ -z $RADIO_STREAM_CONTAINER ]]; then $DIR/../util/container_run.sh $(basena
 
 function blsf() {
     (
-        echo "-----|-----|-----|-----|-----|-----";
-        echo "Artist|Title|Last played|Count|Rating|Date added";
-        echo "-----|-----|-----|-----|-----|-----";
-        beet ls -f '%left{$artist,20}|%left{$title,20}|$lastplayed|$playcount|$rating|$added' "$@"
+        echo "Artist|Title|Album|Last played|Count|Rating|Date added|Deleted";
+        echo "------|-----|-----|-----------|-----|------|----------|-------";
+        beet ls -f '%left{$artist,20}|%left{$title,40}|%left{$album,20}|$lastplayed|$playcount|$rating|$added|$deleted' "$@"
     ) | column -s \| -t -c 60
 }
 
