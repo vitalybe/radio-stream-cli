@@ -63,7 +63,7 @@ fi
 shift $((OPTIND-1))
 
 # run in interactive mode if parameter is given to start, e.g ./start bash
-if [ -z $@ ]; then
+if [ -z "$*" ]; then
     RUN_MODE="-d"
 else
     echo "Starting container in interactive mode (-it)"
@@ -83,7 +83,7 @@ docker run $RUN_MODE -p 80:80  -p 22123:22\
     -v "$FILE_BASH_HISTORY":/root/.bash_history\
     -e "NGINX_PASSWORD=$NGINX_PASSWORD"\
     $DEV_MODE\
-    vitalybe/radio-stream $@
+    vitalybe/radio-stream sh -c "$*"
 
 # sleep to let the container start/fail
 sleep 1
