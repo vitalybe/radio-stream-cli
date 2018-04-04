@@ -90,7 +90,7 @@ Launch the application and enter the IP address of the server and the default pa
 
 If everything works as expected, you should see this screen:
 
-![alt text](images/playlists3.jpg "Settings screenshot") 
+![alt text](images/playlists4.png "Startup screen")
 
 If it doesn't connect, please see [troubleshooting](#troubleshooting) below.
 
@@ -111,6 +111,13 @@ Adding music from YouTube
 You can easily add music from YouTube by running: `bin/app/youtube YOUTUBE_VIDEO_URL`. 
 
 This would download the audio and add it to your library.
+
+Creating new playlists
+----------------------
+
+To create a new playlist, use the "Search" screen. Once the search is complete, choose "Save to playlists". The songs in the playlist will automatically shuffle by the automatic DJ.
+
+![alt text](images/save-as-playlists.png "Search to playlist")
 
 Listing your music
 ------------------
@@ -140,25 +147,6 @@ To modify its settings, copy it first:
 `cp config/config_source.yaml config/config_user.yaml`
 
 In the following sections modify the copied **config_user.yaml** file.
-
-Playlists
----------
-
-By default a single playlist is included, "All music":
-
-    playlists:
-        - name: All music
-          query: ""
-
-To add a new playlist, simply copy these lines, give it a new name and define a query in beet's [query langauge](http://beets.readthedocs.io/en/v1.4.2/reference/query.html). For example, if we wanted to create a new playlist for Rock, this config part would look like so:
-
-    playlists:
-        - name: All music
-          query: ""
-        - name: All music
-          query: genre:Rock
-
-Once you finish, run the `bin/server/start` to restart the service and reload the new configuration.
 
 Last.FM
 -------
